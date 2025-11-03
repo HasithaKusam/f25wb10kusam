@@ -3,3 +3,23 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+
+  button(type="button", class="btn btn-secondary", onclick="faster()") Press me
+
+  #faster Boosted 1 by 2
+
+  script.
+    let value = 1;
+    let amt = 2;
+    function faster() {
+      amt = amt * 2;
+      value = value + amt;
+      document.getElementById('faster').textContent = `Boosted ${value} by ${amt}`;
+    }
+
+  p
+    a(href="/urbantrees") Go to Search Results
+  p
+    a(href="/gridbuild?rows=5&cols=6") Go to Grid Display
+  p
+    a(href="/choose") Go to Random Item
