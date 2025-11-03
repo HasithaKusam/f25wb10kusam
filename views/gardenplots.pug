@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1= title
+
+  - const results = [
+  -   { location: 'North Block', plantCount: 24, soilType: 'Loam' },
+  -   { location: 'Riverside', plantCount: 18, soilType: 'Sandy' },
+  -   { location: 'West Terrace', plantCount: 31, soilType: 'Clay' }
+  - ];
+
+  .container-fluid
+    .row
+      each item in results
+        .col-sm-2
+          h5 #{item.location}
+          p Plants: #{item.plantCount}
+          p Soil: #{item.soilType}
