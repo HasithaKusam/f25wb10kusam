@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  h1= title
+  h1.text-center.mt-4.mb-4= title
 
   -
     const results = [
@@ -10,10 +10,15 @@ block content
       { location: 'West Terrace', plantCount: 31, soilType: 'Clay' }
     ];
 
-  .container-fluid
-    .row
-      each item in results
-        .col-sm-2
-          h5= item.location
-          p Plants: #{item.plantCount}
-          p Soil: #{item.soilType}
+  .container.text-center
+    .row.justify-content-center.g-4
+      each item, i in results
+        .col-md-3.col-sm-6(onclick=`buy(${i})`, style="cursor:pointer; border:1px solid #ccc; border-radius:12px; padding:15px; box-shadow:0 2px 6px rgba(0,0,0,0.1); transition:transform 0.2s;")
+          h5.text-success #{item.location}
+          p.mb-1 Plants: #{item.plantCount}
+          p.mb-2 Soil: #{item.soilType}
+
+  script.
+    function buy(i){
+      alert(`You purchased item ${i}`);
+    }
