@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  h1= title
+
+  -
+    const rRaw = (typeof query !== 'undefined' && query && 'rows' in query) ? query.rows : undefined;
+    const cRaw = (typeof query !== 'undefined' && query && 'cols' in query) ? query.cols : undefined;
+
+  p rows=#{rRaw} cols=#{cRaw}
+
+  -
+    const rows = Number.isInteger(Number(rRaw)) ? Number(rRaw) : NaN;
+    const cols = Number.isInteger(Number(cRaw)) ? Number(cRaw) : NaN;
+
+  if Number.isNaN(rows) || Number.isNaN(cols)
+    p One or both query parameters are not integers.
+  else if rows < 3 || rows > 13
+    p Rows out of range. Use 3-13.
+  else if cols < 3 || cols > 13
+    p Cols out of range. Use 3-13.
+  else
+    table#outer
+      - for (let i = 0; i < rows; i++) {
+        tr#middle
+          - for (let j = 0; j < cols; j++) {
+            td= i + 2*j
+          - }
+      - }

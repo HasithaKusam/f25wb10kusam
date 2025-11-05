@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= title
+
+  - const imageNames = ['plant1.jpg','plant2.jpg','plant3.jpg','plant4.jpg','plant5.jpg'];
+
+  - for (let k = 0; k < 3; k++) {
+    - const r = Math.floor(Math.random() * 5);
+    - const name = imageNames[r];
+    img(src=`/images/${name}`, alt=`${name}`, height="300", width="300")
+  - }
